@@ -6,14 +6,11 @@ class Offer24_reverseList {
         ListNode now = head.next;
         ListNode next;
         pre.next = null;
-        while (true) {
+        while (now != null) {
             next = now.next;
             now.next = pre;
             pre = now;
             now = next;
-            if (now == null)
-                break;
-            next = now.next;
         }
         return pre;
     }
