@@ -3,6 +3,7 @@
  * @author: Tyranitar
  * @date: 2021/5/8 8:51
  **/
+
 public class Offer06_reversePrint {
     public int[] reversePrint(ListNode head) {
         int len = 0;
