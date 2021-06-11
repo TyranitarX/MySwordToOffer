@@ -1,7 +1,5 @@
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
+
 
 /**
  * @description:
@@ -15,27 +13,34 @@ public class Offer38_permutation {
     public String[] permutation(String s) {
         c = s.toCharArray();
         dfs(0);
-        return res.toArray(new String[res.size()]);
+        return res.toArray(new String[0]);
     }
 
-    public void dfs(int x) {
-        if (x == c.length - 1) {
+    public void dfs(int i) {
+        if (i == c.length - 1) {
             res.add(String.valueOf(c));
             return;
         }
-        HashSet<Character> myset = new HashSet<>();
-        for (int i = x; i < c.length; i++) {
-            if (myset.contains(c[i])) continue;
-            myset.add(c[i]);
-            swap(i, x);
-            dfs(x + 1);
-            swap(i, x);
+        Set<Character> set = new HashSet<>();
+        for (int j = i; j < c.length; j++) {
+            if (!set.contains(c[j])) {
+                set.add(c[j]);
+                swap(i, j);
+                dfs(i + 1);
+                swap(i, j);
+            }
         }
     }
 
-    void swap(int a, int b) {
-        char tmp = c[a];
-        c[a] = c[b];
-        c[b] = tmp;
+    void swap(int i, int j) {
+        char temp = c[i];
+        c[i] = c[j];
+        c[j] = temp;
     }
+
+    public static void main(String[] args) {
+        String s = "abc";
+        Arrays.stream(new Offer38_permutation().permutation(s)).forEach(System.out::println);
+    }
+
 }
